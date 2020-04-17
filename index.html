@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+	<form>
+	<head>
+		<meta charset="UTF-8">
+		<title>FUCK 104</title>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+  		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  		crossorigin="anonymous"></script>
+		<style> 
+			.header{
+				text-align: center;
+				margin: 5% auto;
+			}
+			.content{ /*------大欄位-------------*/
+				margin: 5% auto;
+				text-align: center;			
+			}
+			.content div{
+				display: inline-block;
+				vertical-align: top;
+			}
+			.main{ /*---------輸入欄------------*/
+				position: relative;
+    			text-align: center; 
+    			background-color: #fff;
+    			border-radius: 8px;
+    			width: 30%;
+    			height: 360px;
+				margin: 0px auto;
+			}
+			.timeinput{
+				border: 1px solid #ccc!important;
+				border-radius: 4px;
+				padding: 8px;
+				margin: 2% 6%;
+				width: 30%;
+			}
+			button{
+				
+  				background-color: #4CAF50;
+  				border-radius: 5px;
+  				border: none;
+  				color: white;
+  				text-align: center;
+  				text-decoration: none;
+  				display: inline-block;
+  				font-size: 16px;
+				width: 75%;
+    			height: 72px;
+				margin: 3% auto;
+			}
+			button:hover{
+				background-color: #3e8e41;
+			}
+			.Datalist{ /*--------清單-----------*/
+				overflow: auto;
+    			text-align: center; 
+    			background-color: #fff;
+    			border-radius: 8px;
+    			width: 40%;
+    			height: 360px;
+			}
+			.solid{/*分隔線*/
+				width: 75%;
+				border-top: .5px solid #ccc;
+			}
+			.Datalist::-webkit-scrollbar {/*---Scrollbar--*/
+    			background-color:#fff;
+    			width:16px
+			}
+			.Datalist::-webkit-scrollbar-track {
+    			background-color:#fff
+			}
+			.Datalist::-webkit-scrollbar-thumb{
+				background-color:#babac0;
+   				border-radius:16px;
+    			border:4px solid #fff
+			}
+			.Datatable{  /*------------清單內部------------------*/
+				border: 1px;
+				margin: 3% auto;
+			}
+			th{
+				height: 40px;
+				width: 30%;
+				padding: 15px;
+			}
+			td{
+				padding: 15px;
+			}
+			.delete{
+				border-radius: 5px;
+  				border: none;
+			}
+			body {
+  				background-color: rgb(238, 238, 238);
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="header" > 加班計算器 v1.2 </h1>
+		<div class="content">
+			<div class="main">
+				<p><label>上班時間</label>
+				<input class="timeinput" type="text" id="input1" placeholder=" hhmm"></p>
+
+				<p><label>下班時間</label>
+				<input class="timeinput" type="text" id="input2" placeholder=" hhmm"></p>
+				<button type="submit">計算 !</button>
+			</div>
+			<div class="Datalist"> 								
+				<table class="Datatable">
+					<tr>
+						<th>上班</th>
+						<th>下班</th>
+						<th>工時</th>
+					</tr>
+					<tr>
+						<td>10:25</td>
+						<td>19:30</td>
+						<td>09:05</td>
+						<td><input class="delete" type="button" value="x"></td>
+					</tr>
+				</table>
+			</div>	
+		</div>
+		
+	</form>
+	<script>
+		var dataid =1;
+		$(document).ready(function() {
+			$("button").click(function(){
+			
+				var starttime = $("#input1").val();
+				var endtime = $("#input2").val();
+				var rod = 0;
+				
+				var starthour = Math.floor(starttime/100);
+				var startmin = starttime%100;
+				var endhour = Math.floor(endtime/100);
+				var endmin = endtime%100;
+
+				var min = endmin - startmin;
+					
+				if(min<0) //進位
+				{
+					var rod = 1;
+					var min = 60+min; 
+				}
+				var hour= endhour-starthour-rod;
+
+				if(hour<0) //case加班到隔天 2400+(下班-加班)
+				{
+					hour+=24;
+				}
+				var overhour = hour-10; 
+				var overmin  = Math.floor(min/30)*30; //加班以半小時為單位
+				var overtime = overhour*100+min; //用hhmm判斷
+
+				$(".Datatable").append('<tr id="dataid'+ dataid +'"><td>'+ 
+										starthour.toLocaleString('en-US', {minimumIntegerDigits:2})+":"+startmin.toLocaleString('en-US', {minimumIntegerDigits:2})+ 
+										"</td><td>"+
+										endhour.toLocaleString('en-US', {minimumIntegerDigits:2})+ ":"+endmin.toLocaleString('en-US', {minimumIntegerDigits:2})+
+										'</td><td id="total'+dataid+'">'+
+										hour.toLocaleString('en-US', {minimumIntegerDigits:2})+":"+min.toLocaleString('en-US', {minimumIntegerDigits:2})+
+										'</td><td><input class="delete" type="button" value="x" onclick="deldata('+dataid+')"></td></tr>'
+										);
+				if(overtime>30)//case超過加班時數
+				{
+					$("#total"+dataid).append(" ( "+overhour.toLocaleString('en-US', {minimumIntegerDigits: 2})+":"+overmin.toLocaleString('en-US', {minimumIntegerDigits:2})+" )");
+					$("#total"+dataid).css('color', 'red');
+				}
+				dataid++;
+			});
+		});
+		function deldata(id){
+    			$("#dataid"+id).remove();
+  		}
+		$('form').submit(function(e) { //防止submit refresh
+   			 e.preventDefault();
+		});
+	</script>
+	</body>
+</html>
