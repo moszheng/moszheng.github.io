@@ -3,14 +3,14 @@
 	<form>
 	<head>
 		<meta charset="UTF-8">
-		<title>FUCK 104</title>
+		<title>JL Tools</title>
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js"
   		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   		crossorigin="anonymous"></script>
 		<style> 
 			.header{
 				text-align: center;
-				margin: 5% auto;
+				margin: 3% auto;
 			}
 			.content{ /*------大欄位-------------*/
 				margin: 5% auto;
@@ -19,6 +19,14 @@
 			.content div{
 				display: inline-block;
 				vertical-align: top;
+			}
+			.nascontent{
+    			text-align: center; 
+    			background-color: #fff;
+    			border-radius: 8px;
+    			width: 50%;
+    			height: 300px;
+				margin: 0px auto;
 			}
 			.main{ /*---------輸入欄------------*/
 				position: relative;
@@ -36,7 +44,7 @@
 				margin: 2% 6%;
 				width: 30%;
 			}
-			button{
+			button{ /*------按鈕-----------*/
 				
   				background-color: #4CAF50;
   				border-radius: 5px;
@@ -126,10 +134,14 @@
 			</div>	
 		</div>
 		<div>
-			<input class="timeinput" type="text" id="inputnas" placeholder=" mac路徑">
-			<input class="timeinput" type="text" id="outputnas">
-			<button type="submit" id="nasbutton">轉換 !</button>
-			
+			<h1 class="header" > NAS 路徑轉換 </h1>
+			<div class="nascontent">
+				<input class="timeinput" type="text" id="inputnas" placeholder=" 輸入路徑">
+				<input class="timeinput" type="text" id="outputnas"placeholder=" 輸出路徑">
+				<input type="radio" name="location" id="check1" checked> mac -> win
+				<input type="radio" name="location" id="check2"> win -> mac
+				<button type="submit" id="nasbutton">轉換 !</button>
+			</div>
 		</div>
 
 		
@@ -182,14 +194,34 @@
 			});
 		});
 
-		$(document).ready(function() {
+		$(document).ready(function() { //nas轉換
 			$("button").click(function(){
-			
+				
 				var zz = $("#inputnas").val();
-				$("#outputnas").attr("value",zz);
+				var yy = $("#outputnas").val();
+				
+				if(document.getElementById('check1').checked) //mac -> win
+				{
+					var nzz= zz.replace('afp://JLDesignTPE._afpovertcp._tcp.local','//JLDESIGNTPE');
+					var nnzz=nzz.replace(/\//g,'\\');
+					$("#outputnas").attr("value",nnzz);
+
+				}
+				else if(document.getElementById('check2').checked) //win -> mac
+				{
+					var nzz= zz.replace(/\\/g,'/');
+					var nnzz=nzz.replace('//JLDESIGNTPE','afp://JLDesignTPE._afpovertcp._tcp.local');
+					
+					$("#outputnas").attr("value",nnzz);
+				}
+				var copyText = document.getElementById("outputnas");
+       			copyText.select();
+       			copyText.setSelectionRange(0, 99999)
+      			document.execCommand("copy");
+				
+				alert('已複製路徑到剪貼簿');
 			});
 		});
-
 		function deldata(id){
     			$("#dataid"+id).remove();
   		}
