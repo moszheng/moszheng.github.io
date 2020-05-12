@@ -107,7 +107,7 @@
 
 				<p><label>下班時間</label>
 				<input class="timeinput" type="text" id="input2" placeholder=" hhmm"></p>
-				<button type="submit">計算 !</button>
+				<button type="submit" id="timebutton">計算 !</button>
 			</div>
 			<div class="Datalist"> 								
 				<table class="Datatable">
@@ -125,12 +125,19 @@
 				</table>
 			</div>	
 		</div>
+		<div>
+			<input class="timeinput" type="text" id="inputnas" placeholder=" mac路徑">
+			<input class="timeinput" type="text" id="outputnas">
+			<button type="submit" id="nasbutton">轉換 !</button>
+			
+		</div>
+
 		
 	</form>
 	<script>
 		var dataid =1;
 		$(document).ready(function() {
-			$("button").click(function(){
+			$("#timebutton").click(function(){
 			
 				var starttime = $("#input1").val();
 				var endtime = $("#input2").val();
@@ -166,7 +173,7 @@
 										hour.toLocaleString('en-US', {minimumIntegerDigits:2})+":"+min.toLocaleString('en-US', {minimumIntegerDigits:2})+
 										'</td><td><input class="delete" type="button" value="x" onclick="deldata('+dataid+')"></td></tr>'
 										);
-				if(overtime>30)//case超過加班時數
+				if(overtime>=30)//case超過加班時數
 				{
 					$("#total"+dataid).append(" ( "+overhour.toLocaleString('en-US', {minimumIntegerDigits: 2})+":"+overmin.toLocaleString('en-US', {minimumIntegerDigits:2})+" )");
 					$("#total"+dataid).css('color', 'red');
@@ -174,6 +181,15 @@
 				dataid++;
 			});
 		});
+
+		$(document).ready(function() {
+			$("button").click(function(){
+			
+				var zz = $("#inputnas").val();
+				$("#outputnas").attr("value",zz);
+			});
+		});
+
 		function deldata(id){
     			$("#dataid"+id).remove();
   		}
