@@ -10,25 +10,40 @@
 		<style> 
 			.header{
 				text-align: center;
-				margin: 3% auto;
+				margin: 2% auto;
 			}
-			.content{ /*------大欄位-------------*/
-				margin: 5% auto;
+			.content{ /*----------大欄位-------------*/
+				margin: 3% auto;
 				text-align: center;			
 			}
 			.content div{
 				display: inline-block;
 				vertical-align: top;
 			}
-			.nascontent{
-    			text-align: center; 
-    			background-color: #fff;
+			.nascontent{/*-------nas 大欄位----------*/
+				margin: 3% auto;
+				text-align: center;
+				background-color: #fff;
     			border-radius: 8px;
-    			width: 50%;
-    			height: 300px;
+				width: 60%;	
+			}
+			.nascontent div{
+				display: inline-block;
+				vertical-align: top;
+			}
+			.nasmain{ /*---------nas 欄---------------*/
+				position: relative;
+    			text-align: center; 	
+    			width: 60%;
+    			height: 360px;
 				margin: 0px auto;
 			}
-			.main{ /*---------輸入欄------------*/
+			.buttoncontent{
+				margin: 2% auto;
+				text-align: center; 
+				width: 25%;
+			}
+			.main{ /*-----------輸入欄--------------*/
 				position: relative;
     			text-align: center; 
     			background-color: #fff;
@@ -44,7 +59,14 @@
 				margin: 2% 6%;
 				width: 30%;
 			}
-			button{ /*------按鈕-----------*/
+			.nasinput{
+				border: 1px solid #ccc!important;
+				border-radius: 4px;
+				padding: 8px;
+				margin: 2% 4%;
+				width: 90%;
+			}
+			button{ /*------------按鈕-------------*/
 				
   				background-color: #4CAF50;
   				border-radius: 5px;
@@ -61,7 +83,7 @@
 			button:hover{
 				background-color: #3e8e41;
 			}
-			.Datalist{ /*--------清單-----------*/
+			.Datalist{ /*-----------清單-----------*/
 				overflow: auto;
     			text-align: center; 
     			background-color: #fff;
@@ -85,7 +107,7 @@
    				border-radius:16px;
     			border:4px solid #fff
 			}
-			.Datatable{  /*------------清單內部------------------*/
+			.Datatable{  /*------------清單內部------------*/
 				border: 1px;
 				margin: 3% auto;
 			}
@@ -133,13 +155,20 @@
 				</table>
 			</div>	
 		</div>
-		<div>
-			<h1 class="header" > NAS 路徑轉換 </h1>
-			<div class="nascontent">
-				<input class="timeinput" type="text" id="inputnas" placeholder=" 輸入路徑">
-				<input class="timeinput" type="text" id="outputnas"placeholder=" 輸出路徑">
-				<input type="radio" name="location" id="check1" checked> mac -> win
-				<input type="radio" name="location" id="check2"> win -> mac
+		<h1 class="header" > NAS 路徑轉換 </h1>
+		<div class="nascontent">
+			<div class="nasmain">
+				<p>
+				<input class="nasinput" type="search" id="inputnas" placeholder=" 輸入路徑"></p>
+				<p>
+				<input class="nasinput" type="search" id="outputnas"placeholder=" 輸出路徑"></p>
+				<p>
+				<input type="radio" name="location" id="check1" checked> mac -> win</p>
+				<p>
+				<input type="radio" name="location" id="check2"> win -> mac </p>
+				
+			</div>
+			<div class="buttoncontent">
 				<button type="submit" id="nasbutton">轉換 !</button>
 			</div>
 		</div>
@@ -195,7 +224,7 @@
 		});
 
 		$(document).ready(function() { //nas轉換
-			$("button").click(function(){
+			$("#nasbutton").click(function(){
 				
 				var zz = $("#inputnas").val();
 				var yy = $("#outputnas").val();
@@ -216,10 +245,10 @@
 				}
 				var copyText = document.getElementById("outputnas");
        			copyText.select();
-       			copyText.setSelectionRange(0, 99999)
+       			copyText.setSelectionRange(0, 99999);
       			document.execCommand("copy");
 				
-				alert('已複製路徑到剪貼簿');
+				//alert('已複製路徑到剪貼簿');
 			});
 		});
 		function deldata(id){
