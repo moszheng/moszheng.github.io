@@ -172,8 +172,15 @@
 				<button type="submit" id="nasbutton">轉換 !</button>
 			</div>
 		</div>
+		<h1 class="header" > JL 吃什麼 </h1>
+			<div class="randomEat">
+				<p>
+				<button type="button" id="Eatbutton">開吃 </button></p>
+				<p>
+				<input  type="text" id="outputeat" placeholder=" 輸出路徑"></p>
 
-		
+			</div>
+
 	</form>
 	<script>
 		var dataid =1;
@@ -257,6 +264,18 @@
 		$('form').submit(function(e) { //防止submit refresh
    			 e.preventDefault();
 		});
+
+		$(document).ready(function() {
+
+			$("#Eatbutton").click(function(){
+
+				var items = ["1","2","3"];
+				var randomitems = items[Math.floor(Math.random()*items.length)];
+
+				$("#outputeat").attr("value",randomitems);
+
+			}
+		}
 	</script>
 	</body>
 </html>
