@@ -276,14 +276,14 @@
     			$("#dataid"+id).remove();
   		}
 
-		$(document).ready(function() {
+		$(document).ready(function() {// Ramdom eat
 
 			$("#Eatbutton").click(function(){
 
 				var items = ["熊師傅","究醬","動之家","摩斯","柴火"];
 				var randomitems = items[Math.floor(Math.random()*items.length)];
 
-				$("#eatoutput").attr("value",randomitems);
+				$(".eatoutput").attr("value",randomitems);
 
 			});
 		});
