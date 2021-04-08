@@ -3,11 +3,28 @@
 	<form>
 	<head>
 		<meta charset="UTF-8">
-		<title>JL Tools</title>
+		<title>Mixcode Tools</title>
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js"
   		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   		crossorigin="anonymous"></script>
-		<style> 
+		<style>
+			*{
+  				font-family:Verdana;
+  				margin:0;
+  				padding:0;  
+			}
+			body {
+  				background-color: rgb(255, 197, 2);
+			}
+			.checkbox{
+				text-align: center;
+				width: 80%;	
+				margin: 5% auto;
+			}
+			.checkboxText{
+				margin: 7% 6%;
+			}
+			
 			.header{
 				text-align: center;
 				margin: 2% auto;
@@ -35,21 +52,18 @@
 				position: relative;
     			text-align: center; 	
     			width: 60%;
-    			height: 360px;
-				margin: 0px auto;
+    			height: 200px;
+				margin: 3% auto;
 			}
-			.RandomEat{/*------------------------*/
+			.RandomEat{/*---------RandomEat---------------*/
 				margin: 3% auto;
 				text-align: center;
 				background-color: #fff;
     			border-radius: 8px;
+				height: 240px;
 				width: 60%;	
 			}
-			.buttoncontent{
-				margin: 2% auto;
-				text-align: center; 
-				width: 25%;
-			}
+			
 			.main{ /*-----------輸入欄--------------*/
 				position: relative;
     			text-align: center; 
@@ -77,12 +91,12 @@
 				border: 1px solid #ccc!important;
 				border-radius: 4px;
 				padding: 12px;
-				margin: 6% 4%;
+				margin: 2% 2%;
 				width: 50%;
 			}
 			button{ /*------------按鈕-------------*/
 				
-  				background-color: #4CAF50;
+  				background-color: #000000;
   				border-radius: 5px;
   				border: none;
   				color: white;
@@ -95,192 +109,218 @@
 				margin: 3% auto;
 			}
 			button:hover{
-				background-color: #3e8e41;
+				background-color: #000000;
 			}
-			.Datalist{ /*-----------清單-----------*/
-				overflow: auto;
-    			text-align: center; 
-    			background-color: #fff;
-    			border-radius: 8px;
-    			width: 40%;
-    			height: 360px;
+			.buttoncontent{
+				margin: 4% auto;
+				text-align: center; 
+				width: 25%;
 			}
+
 			.solid{/*分隔線*/
 				width: 75%;
 				border-top: .5px solid #ccc;
 			}
-			.Datalist::-webkit-scrollbar {/*---Scrollbar--*/
-    			background-color:#fff;
-    			width:16px
+			.notify{ /*------------提示-----------*/ 
+  				position:absolute;
+  				top:0px;
+  				width:100%;
+  				height:0;  
+  				box-sizing:border-box;
+  				color:white;  
+  				text-align:center;
+  				background:rgba(0,0,0,.6);
+  				overflow:hidden;
+  				box-sizing:border-box;
+  				transition:height .2s;
 			}
-			.Datalist::-webkit-scrollbar-track {
-    			background-color:#fff
+			#notifyType:before{
+  				display:block;
+ 				margin:15px; 
 			}
-			.Datalist::-webkit-scrollbar-thumb{
-				background-color:#babac0;
-   				border-radius:16px;
-    			border:4px solid #fff
+			.active{
+				height:50px; /*黑色高*/
 			}
-			.Datatable{  /*------------清單內部------------*/
-				border: 1px;
-				margin: 3% auto;
+			/*-----------------------switch------------*/
+			.switch {
+				position: relative;
+				display: inline-block;
+				width: 90px;
+				height: 34px;
+				margin: 5% auto;
 			}
-			th{
-				height: 40px;
-				width: 30%;
-				padding: 15px;
+
+			.switch input {display:none;}
+
+			.slider {
+				position: absolute;
+				cursor: pointer;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: rgb(255, 197, 2);
+				-webkit-transition: .4s;
+				transition: .4s;
 			}
-			td{
-				padding: 15px;
+
+			.slider:before {
+				position: absolute;
+				content: "";
+				height: 26px;
+				width: 26px;
+				left: 4px;
+				bottom: 4px;
+				background-color: white;
+				-webkit-transition: .4s;
+				transition: .4s;
 			}
-			.delete{
-				border-radius: 5px;
-  				border: none;
+
+			input:checked + .slider {
+				background-color: #000;
 			}
-			body {
-  				background-color: rgb(238, 238, 238);
+
+			input:focus + .slider {
+				box-shadow: 0 0 1px #2196F3;
 			}
+
+			input:checked + .slider:before {
+				-webkit-transform: translateX(55px);
+				-ms-transform: translateX(55px);
+				transform: translateX(55px);
+			}
+
+			/*------ ADDED CSS ---------*/
+			.on
+			{
+				display: none;
+			}
+
+			.on, .off
+			{
+				color: white;
+				position: absolute;
+				transform: translate(-50%,-50%);
+				top: 50%;
+				left: 50%;
+				font-size: 10px;
+				font-family: Verdana, sans-serif;
+			}
+
+			input:checked+ .slider .on
+			{display: block;}
+
+			input:checked + .slider .off
+			{display: none;}
+
+			/*--------- END --------*/
+
+			/* Rounded sliders */
+			.slider.round {
+				border-radius: 34px;
+			}
+
+			.slider.round:before {
+				border-radius: 50%;
+			}
+			
 		</style>
 	</head>
 	<body>
-		<h1 class="header" > 加班計算器 v1.2 </h1>
-		<div class="content">
-			<div class="main">
-				<p><label>上班時間</label>
-				<input class="timeinput" type="text" id="input1" placeholder=" hhmm"></p>
-
-				<p><label>下班時間</label>
-				<input class="timeinput" type="text" id="input2" placeholder=" hhmm"></p>
-				<button type="submit" id="timebutton">計算 !</button>
-			</div>
-			<div class="Datalist"> 								
-				<table class="Datatable">
-					<tr>
-						<th>上班</th>
-						<th>下班</th>
-						<th>工時</th>
-					</tr>
-					<tr>
-						<td>10:25</td>
-						<td>19:30</td>
-						<td>09:05</td>
-						<td><input class="delete" type="button" value="x"></td>
-					</tr>
-				</table>
-			</div>	
+		
+		<div class="notify">
+			<span id="notifyType" class="">已複製路徑</span>
 		</div>
-		<h1 class="header" > NAS 路徑轉換 </h1>
+
+		<h1 class="header" > NAS 路徑轉換 v.beta </h1>
 		<div class="nascontent">
 			<div class="nasmain">
 				<p>
 				<input class="nasinput" type="search" id="inputnas" placeholder=" 輸入路徑"></p>
 				<p>
 				<input class="nasinput" type="search" id="outputnas"placeholder=" 輸出路徑"></p>
-				<p>
-				<input type="radio" name="location" id="check1" checked> mac -> win</p>
-				<p>
-				<input type="radio" name="location" id="check2"> win -> mac </p>
+				<div class ="checkbox">
+					<div class ="checkboxText"><b>Mac</b></div>
+
+					<label class="switch">
+						<input type="checkbox" id="togBtn">
+						<div class="slider round">
+						 <!--ADDED HTML -->
+						 <span class="on"><</span>
+						 <span class="off">></span>
+						 <!--END-->
+						</div>
+					</label>
+
+					<div class ="checkboxText"><b>Windows</b></div>
+				</div>
 				
 			</div>
 			<div class="buttoncontent">
 				<button type="submit" id="nasbutton">轉換 !</button>
 			</div>
+			
 		</div>
-		<h1 class="header" > JL 吃什麼 </h1>
+
+		<h1 class="header" > 咪扣吃什麼 </h1>
 			<div class="RandomEat">
 				<p>
 				<button type="button" id="Eatbutton">開吃 </button></p>
 				<p>
-				<input  class='eatoutput' type="text" placeholder=" 輸出路徑"></p>
+				<input  class='eatoutput' type="text" placeholder=" 吃...."></p>
 
 			</div>
 
 	</form>
 	<script>
 		var dataid =1;
-		$(document).ready(function() {
-			$("#timebutton").click(function(){
-			
-				var starttime = $("#input1").val();
-				var endtime = $("#input2").val();
-				var rod = 0;
-				
-				var starthour = Math.floor(starttime/100);
-				var startmin = starttime%100;
-				var endhour = Math.floor(endtime/100);
-				var endmin = endtime%100;
-
-				var min = endmin - startmin;
-					
-				if(min<0) //進位
-				{
-					var rod = 1;
-					var min = 60+min; 
-				}
-				var hour= endhour-starthour-rod;
-
-				if(hour<0) //case加班到隔天 2400+(下班-加班)
-				{
-					hour+=24;
-				}
-				var overhour = hour-10; 
-				var overmin  = Math.floor(min/30)*30; //加班以半小時為單位
-				var overtime = overhour*100+min; //用hhmm判斷
-
-				$(".Datatable").append('<tr id="dataid'+ dataid +'"><td>'+ 
-										starthour.toLocaleString('en-US', {minimumIntegerDigits:2})+":"+startmin.toLocaleString('en-US', {minimumIntegerDigits:2})+ 
-										"</td><td>"+
-										endhour.toLocaleString('en-US', {minimumIntegerDigits:2})+ ":"+endmin.toLocaleString('en-US', {minimumIntegerDigits:2})+
-										'</td><td id="total'+dataid+'">'+
-										hour.toLocaleString('en-US', {minimumIntegerDigits:2})+":"+min.toLocaleString('en-US', {minimumIntegerDigits:2})+
-										'</td><td><input class="delete" type="button" value="x" onclick="deldata('+dataid+')"></td></tr>'
-										);
-				if(overtime>=30)//case超過加班時數
-				{
-					$("#total"+dataid).append(" ( "+overhour.toLocaleString('en-US', {minimumIntegerDigits: 2})+":"+overmin.toLocaleString('en-US', {minimumIntegerDigits:2})+" )");
-					$("#total"+dataid).css('color', 'red');
-				}
-				dataid++;
-			});
-		});
-
-		$(document).ready(function() { //nas轉換
+		
+		$(document).ready(function() { //---------------nas轉換
 			$("#nasbutton").click(function(){
 				
 				var zz = $("#inputnas").val();
 				var yy = $("#outputnas").val();
 				
-				if(document.getElementById('check1').checked) //mac -> win
-				{
-					var nzz= zz.replace('afp://JLDesignTPE._afpovertcp._tcp.local','//JLDESIGNTPE');
-					var nnzz=nzz.replace(/\//g,'\\');
-					$("#outputnas").attr("value",nnzz);
+				
 
-				}
-				else if(document.getElementById('check2').checked) //win -> mac
+				if(document.getElementById('togBtn').checked) //win -> mac
 				{
-					var nzz= zz.replace(/\\/g,'/');
-					var nnzz=nzz.replace('//JLDESIGNTPE','afp://JLDesignTPE._afpovertcp._tcp.local');
+					var nzz= zz.replace(/\\/g,'/'); // replace \ -> /
+					var nnzz=nzz.replace('//diskstation','/Volumes');
 					
 					$("#outputnas").attr("value",nnzz);
+					
+
 				}
+				else  //mac -> win
+				{
+					var nzz= zz.replace(/\//g,'\\'); // replace / -> \
+					var nnzz=nzz.replace('\Volumes','\\diskstation');
+					$("#outputnas").attr("value",nnzz);
+					
+				}
+
 				var copyText = document.getElementById("outputnas");
        			copyText.select();
        			copyText.setSelectionRange(0, 99999);
       			document.execCommand("copy");
 				
-				//alert('已複製路徑到剪貼簿');
+				$(".notify").toggleClass("active");
+  				
+				setTimeout(function(){
+    				$(".notify").removeClass("active");
+    				
+  				},2000);
+				  
+				
 			});
 		});
-		function deldata(id){
-    			$("#dataid"+id).remove();
-  		}
-
+		
 		$(document).ready(function() {// Ramdom eat
 
 			$("#Eatbutton").click(function(){
 
-				var items = ["熊師傅","究醬","動之家","摩斯","柴火"];
+				var items = ["二馬","健康餐盒","八麵玲瓏","摩斯","采岳軒"];
 				var randomitems = items[Math.floor(Math.random()*items.length)];
 
 				$(".eatoutput").attr("value",randomitems);
