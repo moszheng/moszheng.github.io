@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+	<form>
+	<head>
+		<meta charset="UTF-8">
+		<title>Mixcode Tools</title>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+  		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  		crossorigin="anonymous"></script>
+		<style>
+			*{
+  				font-family:Verdana;
+  				margin:0;
+  				padding:0;  
+			}
+			body {
+  				background-color: rgb(255, 197, 2);
+			}
+			.checkbox{
+				text-align: center;
+				width: 80%;	
+				margin: 5% auto;
+			}
+			.checkboxText{
+				margin: 7% 6%;
+			}
+			
+			.header{
+				text-align: center;
+				margin: 2% auto;
+			}
+			.content{ /*----------大欄位-------------*/
+				margin: 3% auto;
+				text-align: center;			
+			}
+			.content div{
+				display: inline-block;
+				vertical-align: top;
+			}
+			.nascontent{/*-------nas 大欄位----------*/
+				margin: 3% auto;
+				text-align: center;
+				background-color: #fff;
+    			border-radius: 8px;
+				width: 60%;	
+			}
+			.nascontent div{
+				display: inline-block;
+				vertical-align: top;
+			}
+			.nasmain{ /*---------nas 欄---------------*/
+				position: relative;
+    			text-align: center; 	
+    			width: 60%;
+    			height: 200px;
+				margin: 3% auto;
+			}
+			.RandomEat{/*---------RandomEat---------------*/
+				margin: 3% auto;
+				text-align: center;
+				background-color: #fff;
+    			border-radius: 8px;
+				height: 240px;
+				width: 60%;	
+			}
+			
+			.main{ /*-----------輸入欄--------------*/
+				position: relative;
+    			text-align: center; 
+    			background-color: #fff;
+    			border-radius: 8px;
+    			width: 30%;
+    			height: 360px;
+				margin: 0px auto;
+			}
+			.timeinput{
+				border: 1px solid #ccc!important;
+				border-radius: 4px;
+				padding: 8px;
+				margin: 2% 6%;
+				width: 30%;
+			}
+			.nasinput{
+				border: 1px solid #ccc!important;
+				border-radius: 4px;
+				padding: 8px;
+				margin: 2% 4%;
+				width: 90%;
+			}
+			.eatoutput{
+				border: 1px solid #ccc!important;
+				border-radius: 4px;
+				padding: 12px;
+				margin: 2% 2%;
+				width: 50%;
+			}
+			button{ /*------------按鈕-------------*/
+				
+  				background-color: #000000;
+  				border-radius: 5px;
+  				border: none;
+  				color: white;
+  				text-align: center;
+  				text-decoration: none;
+  				display: inline-block;
+  				font-size: 16px;
+				width: 75%;
+    			height: 72px;
+				margin: 3% auto;
+			}
+			button:hover{
+				background-color: #000000;
+			}
+			.buttoncontent{
+				margin: 4% auto;
+				text-align: center; 
+				width: 25%;
+			}
+
+			.solid{/*分隔線*/
+				width: 75%;
+				border-top: .5px solid #ccc;
+			}
+			.notify{ /*------------提示-----------*/ 
+  				position:absolute;
+  				top:0px;
+  				width:100%;
+  				height:0;  
+  				box-sizing:border-box;
+  				color:white;  
+  				text-align:center;
+  				background:rgba(0,0,0,.6);
+  				overflow:hidden;
+  				box-sizing:border-box;
+  				transition:height .2s;
+			}
+			#notifyType:before{
+  				display:block;
+ 				margin:15px; 
+			}
+			.active{
+				height:50px; /*黑色高*/
+			}
+			/*-----------------------switch------------*/
+			.switch {
+				position: relative;
+				display: inline-block;
+				width: 90px;
+				height: 34px;
+				margin: 5% auto;
+			}
+
+			.switch input {display:none;}
+
+			.slider {
+				position: absolute;
+				cursor: pointer;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: rgb(255, 197, 2);
+				-webkit-transition: .4s;
+				transition: .4s;
+			}
+
+			.slider:before {
+				position: absolute;
+				content: "";
+				height: 26px;
+				width: 26px;
+				left: 4px;
+				bottom: 4px;
+				background-color: white;
+				-webkit-transition: .4s;
+				transition: .4s;
+			}
+
+			input:checked + .slider {
+				background-color: #000;
+			}
+
+			input:focus + .slider {
+				box-shadow: 0 0 1px #2196F3;
+			}
+
+			input:checked + .slider:before {
+				-webkit-transform: translateX(55px);
+				-ms-transform: translateX(55px);
+				transform: translateX(55px);
+			}
+
+			/*------ ADDED CSS ---------*/
+			.on
+			{
+				display: none;
+			}
+
+			.on, .off
+			{
+				color: white;
+				position: absolute;
+				transform: translate(-50%,-50%);
+				top: 50%;
+				left: 50%;
+				font-size: 10px;
+				font-family: Verdana, sans-serif;
+			}
+
+			input:checked+ .slider .on
+			{display: block;}
+
+			input:checked + .slider .off
+			{display: none;}
+
+			/*--------- END --------*/
+
+			/* Rounded sliders */
+			.slider.round {
+				border-radius: 34px;
+			}
+
+			.slider.round:before {
+				border-radius: 50%;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div class="notify">
+			<span id="notifyType" class="">已複製路徑</span>
+		</div>
+
+		<h1 class="header" > NAS 路徑轉換 v.beta </h1>
+		<div class="nascontent">
+			<div class="nasmain">
+				<p>
+				<input class="nasinput" type="search" id="inputnas" placeholder=" 輸入路徑"></p>
+				<p>
+				<input class="nasinput" type="search" id="outputnas"placeholder=" 輸出路徑"></p>
+				<div class ="checkbox">
+					<div class ="checkboxText"><b>Mac</b></div>
+
+					<label class="switch">
+						<input type="checkbox" id="togBtn">
+						<div class="slider round">
+						 <!--ADDED HTML -->
+						 <span class="on"><</span>
+						 <span class="off">></span>
+						 <!--END-->
+						</div>
+					</label>
+
+					<div class ="checkboxText"><b>Windows</b></div>
+				</div>
+				
+			</div>
+			<div class="buttoncontent">
+				<button type="submit" id="nasbutton">轉換 !</button>
+			</div>
+			
+		</div>
+
+		<h1 class="header" > 咪扣吃什麼 </h1>
+			<div class="RandomEat">
+				<p>
+				<button type="button" id="Eatbutton">開吃 </button></p>
+				<p>
+				<input  class='eatoutput' type="text" placeholder=" 吃...."></p>
+
+			</div>
+
+	</form>
+	<script>
+		var dataid =1;
+		
+		$(document).ready(function() { //---------------nas轉換
+			$("#nasbutton").click(function(){
+				
+				var zz = $("#inputnas").val();
+				var yy = $("#outputnas").val();
+				
+				
+
+				if(document.getElementById('togBtn').checked) //win -> mac
+				{
+					var nzz= zz.replace(/\\/g,'/'); // replace \ -> /
+					var nnzz=nzz.replace('//diskstation','/Volumes');
+					
+					$("#outputnas").attr("value",nnzz);
+					
+
+				}
+				else  //mac -> win
+				{
+					var nzz= zz.replace(/\//g,'\\'); // replace / -> \
+					var nnzz=nzz.replace('\Volumes','\\diskstation');
+					$("#outputnas").attr("value",nnzz);
+					
+				}
+
+				var copyText = document.getElementById("outputnas");
+       			copyText.select();
+       			copyText.setSelectionRange(0, 99999);
+      			document.execCommand("copy");
+				
+				$(".notify").toggleClass("active");
+  				
+				setTimeout(function(){
+    				$(".notify").removeClass("active");
+    				
+  				},2000);
+				  
+				
+			});
+		});
+		
+		$(document).ready(function() {// Ramdom eat
+
+			$("#Eatbutton").click(function(){
+
+				var items = ["二馬","健康餐盒","八麵玲瓏","摩斯","采岳軒"];
+				var randomitems = items[Math.floor(Math.random()*items.length)];
+
+				$(".eatoutput").attr("value",randomitems);
+
+			});
+		});
+
+		$('form').submit(function(e) { //防止submit refresh
+   			 e.preventDefault();
+		});
+
+		
+	</script>
+	</body>
+</html>
