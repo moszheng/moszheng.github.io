@@ -16,14 +16,7 @@
 			body {
   				background-color: rgb(255, 197, 2);
 			}
-			.checkbox{
-				text-align: center;
-				width: 80%;	
-				margin: 5% auto;
-			}
-			.checkboxText{
-				margin: 7% 6%;
-			}
+			
 			
 			.header{
 				text-align: center;
@@ -54,6 +47,14 @@
     			width: 60%;
     			height: 200px;
 				margin: 3% auto;
+			}
+			.checkbox{ /*切換nas欄------*/
+				text-align: center;
+				width: 80%;	
+				margin: 5% auto;
+			}
+			.checkboxText{
+				margin: 7% 6%;
 			}
 			.RandomEat{/*---------RandomEat---------------*/
 				margin: 3% auto;
@@ -109,7 +110,7 @@
 				margin: 3% auto;
 			}
 			button:hover{
-				background-color: #000000;
+				background-color: #252525;
 			}
 			.buttoncontent{
 				margin: 4% auto;
@@ -129,7 +130,6 @@
   				box-sizing:border-box;
   				color:white;  
   				text-align:center;
-  				background:rgba(0,0,0,.6);
   				overflow:hidden;
   				box-sizing:border-box;
   				transition:height .2s;
@@ -140,6 +140,18 @@
 			}
 			.active{
 				height:50px; /*黑色高*/
+				background:rgba(0,0,0,.6);
+			}
+			.activefailure{
+				height:50px;
+				background:rgba(247, 0, 0, 0.6);
+			}
+			.success:before{
+				Content:"已複製路徑";
+			}
+
+			.failure:before{
+				Content:"輸入失敗";
 			}
 			/*-----------------------switch------------*/
 			.switch {
@@ -163,7 +175,6 @@
 				-webkit-transition: .4s;
 				transition: .4s;
 			}
-
 			.slider:before {
 				position: absolute;
 				content: "";
@@ -179,23 +190,19 @@
 			input:checked + .slider {
 				background-color: #000;
 			}
-
 			input:focus + .slider {
 				box-shadow: 0 0 1px #2196F3;
 			}
-
 			input:checked + .slider:before {
 				-webkit-transform: translateX(55px);
 				-ms-transform: translateX(55px);
 				transform: translateX(55px);
 			}
-
 			/*------ ADDED CSS ---------*/
 			.on
 			{
 				display: none;
 			}
-
 			.on, .off
 			{
 				color: white;
@@ -229,7 +236,7 @@
 	<body>
 		
 		<div class="notify">
-			<span id="notifyType" class="">已複製路徑</span>
+			<span id="notifyType" class=""></span>
 		</div>
 
 		<h1 class="header" > NAS 路徑轉換 v.beta </h1>
@@ -253,23 +260,20 @@
 					</label>
 
 					<div class ="checkboxText"><b>Windows</b></div>
-				</div>
-				
+				</div>				
 			</div>
 			<div class="buttoncontent">
 				<button type="submit" id="nasbutton">轉換 !</button>
 			</div>
-			
 		</div>
 
 		<h1 class="header" > 咪扣吃什麼 </h1>
-			<div class="RandomEat">
-				<p>
-				<button type="button" id="Eatbutton">開吃 </button></p>
-				<p>
-				<input  class='eatoutput' type="text" placeholder=" 吃...."></p>
-
-			</div>
+		<div class="RandomEat">
+			<p>
+			<button type="button" id="Eatbutton">開吃 </button></p>
+			<p>
+			<input  class='eatoutput' type="text" placeholder=" 吃...."></p>
+		</div>
 
 	</form>
 	<script>
@@ -278,41 +282,52 @@
 		$(document).ready(function() { //---------------nas轉換
 			$("#nasbutton").click(function(){
 				
-				var zz = $("#inputnas").val();
-				var yy = $("#outputnas").val();
-				
-				
+				if($("#inputnas").val().length<1) /*input failure*/
+				{	
+					$(".notify").toggleClass("activefailure");
+					$("#notifyType").addClass("failure");
 
-				if(document.getElementById('togBtn').checked) //win -> mac
-				{
-					var nzz= zz.replace(/\\/g,'/'); // replace \ -> /
-					var nnzz=nzz.replace('//diskstation','/Volumes');
+					setTimeout(function(){
+						$(".notify").removeClass("activefailure");
+						$("#notifyType").removeClass("failure");
+					},2000);
 					
-					$("#outputnas").attr("value",nnzz);
-					
-
-				}
-				else  //mac -> win
-				{
-					var nzz= zz.replace(/\//g,'\\'); // replace / -> \
-					var nnzz=nzz.replace('\Volumes','\\diskstation');
-					$("#outputnas").attr("value",nnzz);
-					
+					return false;
 				}
 
-				var copyText = document.getElementById("outputnas");
-       			copyText.select();
-       			copyText.setSelectionRange(0, 99999);
-      			document.execCommand("copy");
-				
-				$(".notify").toggleClass("active");
-  				
-				setTimeout(function(){
-    				$(".notify").removeClass("active");
-    				
-  				},2000);
-				  
-				
+				else {
+
+					var zz = $("#inputnas").val();
+					var yy = $("#outputnas").val();
+
+					if(document.getElementById('togBtn').checked) //win -> mac
+					{
+						var nzz= zz.replace(/\\/g,'/'); // replace \ -> /
+						var nnzz=nzz.replace('//diskstation','/Volumes');
+						
+						$("#outputnas").attr("value",nnzz);						
+					}
+					else  //mac -> win
+					{
+						var nzz= zz.replace(/\//g,'\\'); // replace / -> \
+						var nnzz=nzz.replace('\Volumes','\\diskstation');
+						$("#outputnas").attr("value",nnzz);						
+					}
+
+					var copyText = document.getElementById("outputnas");
+					copyText.select();
+					copyText.setSelectionRange(0, 99999);
+					document.execCommand("copy");
+					
+					$(".notify").toggleClass("active");
+					$("#notifyType").toggleClass("success");
+					
+					setTimeout(function(){
+						$(".notify").removeClass("active");
+						$("#notifyType").removeClass("success");
+						
+					},2000);
+				}
 			});
 		});
 		
