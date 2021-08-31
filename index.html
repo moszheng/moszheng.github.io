@@ -8,10 +8,9 @@
 		<meta property="og:description" content="MixCode Tools" />
 		<meta property="og:title" content="MixCode Tools" />
 
-		<title>Mixcode Tools</title>
+		<title>MixCode Tools</title>
 		<link rel="icon" href="https://pro2-bar-s3-cdn-cf2.myportfolio.com/c011f0d7852186705bead57bafae0c96/d8f00867-73df-4837-93fc-9f5d5f068557_carw_1x1x32.png?h=d9c2ed76f708163a1ffec3ece7794f8e" />
-		<link rel="shortcut icon" href="https://pro2-bar-s3-cdn-cf2.myportfolio.com/c011f0d7852186705bead57bafae0c96/d8f00867-73df-4837-93fc-9f5d5f068557_carw_1x1x32.png?h=d9c2ed76f708163a1ffec3ece7794f8e" type="image/x-icon" />
-
+		
 		<meta property="og:image" content="https://i.imgur.com/doYxxFI.png" />
 		
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js"integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="crossorigin="anonymous"></script>
@@ -22,15 +21,12 @@
 		<!--Custom Style-->
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&display=swap');
-
 			h2{
 				font-family:'Noto Sans TC', '微軟正黑體', sans-serif;
 			}
-
 			body {
   				background-color: #FFC700;
-				font-family: 'Verdana','微軟正黑體', sans-serif;
-				
+				font-family: 'Verdana','微軟正黑體', sans-serif;	
 			}
 			.container {
    				max-width: 800px;
@@ -39,7 +35,10 @@
 			.rounded {
     			border-radius: .8rem!important;
 			}
-			
+			:focus {
+				border-color: #000 !important;
+				box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3) !important;
+			}
 			.notify{ /*------------提示-----------*/ 
   				position:absolute;
   				top:0px;
@@ -193,7 +192,7 @@
 			<div class="container rounded p-5">
 				
 					<button type="button"  class="w-100 btn btn-dark my-2 py-3" id="Eatbutton">開吃 </button>
-					<input class='form-control my-2' id="eatoutput" type="text" placeholder=" 吃....">
+					<input class='form-control my-2' id="eatoutput" type="text" placeholder=" 吃...." disabled readonly>
 				
 			</div>
 		</div>
@@ -208,6 +207,7 @@
 				{	
 					$(".notify").toggleClass("activefailure");
 					$("#notifyType").addClass("failure");
+					$("#error").prepend("failure");
 
 					setTimeout(function(){
 						$(".notify").removeClass("activefailure");
