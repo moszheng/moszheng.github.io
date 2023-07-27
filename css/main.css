@@ -11,6 +11,10 @@ body {
   -webkit-font-smoothing: antialiased;
   
 }
+.float-right {
+  float: right!important;
+}
+
 .container {
   max-width: 2400px !important;
 }
