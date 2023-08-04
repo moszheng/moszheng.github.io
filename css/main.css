@@ -22,7 +22,11 @@ body {
 /*.about-content {
   max-width: 1200px !important;
 }*/
-
+.avatar-user {
+  border-radius: 50% !important;
+  width : 260px;
+  height : 260px; 
+}
 /* Font Setting */
 h2 {
   text-align: center;
