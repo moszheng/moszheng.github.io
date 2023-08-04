@@ -19,6 +19,10 @@ body {
   max-width: 2400px !important;
 }
 
+/*.about-content {
+  max-width: 1200px !important;
+}*/
+
 /* Font Setting */
 h2 {
   text-align: center;
