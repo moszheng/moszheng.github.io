@@ -10,11 +10,9 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  transition: background 0.5s linear;
 }
-.index_bg_overlay{
-  background-color: rgba(0, 0, 0, 0.55); 
-  transform: scale(1.001);
-}
+
 .float-right {
   float: right!important;
 }

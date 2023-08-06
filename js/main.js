@@ -1,11 +1,9 @@
-const bg_cover = document.getElementsByClassName("index_bg_overlay")[0];
+const bg_cover = document.getElementsById("index_bg_overlay");
 
-// 定義需要更改的樣式顏色陣列
 const bg_image = [
     './img/01_gma29.jpg', 
     './img/02_gha56_01.png'];
 
-// 設定定時器，每500毫秒更換一次樣式
 let index = 0;
 
 setInterval(() => {
