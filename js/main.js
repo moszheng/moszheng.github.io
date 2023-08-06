@@ -1,4 +1,4 @@
-const bg_cover = document.getElementById("index_bg_overlay")[0];
+const bg_cover = document.getElementsByClassName("index_bg_overlay")[0];
 
 // 定義需要更改的樣式顏色陣列
 const bg_image = [
