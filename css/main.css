@@ -10,6 +10,20 @@ body {
   -webkit-font-smoothing: antialiased;
 
 }
+.index_bg_cover{
+  
+  /*position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;*/
+  position: relative;
+  height: 92vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 .float-right {
   float: right!important;
 }
