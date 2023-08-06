@@ -10,9 +10,9 @@ let index = 0;
 
 setInterval(() => {
 
-    
+    console.log(bg_cover)
     bg_cover.style.backgroundImage = url(bg_image[index]);
 
     index = (index + 1) % colors.length;
-
+    console.log(index)
 }, 500);
