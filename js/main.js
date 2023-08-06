@@ -13,5 +13,5 @@ setInterval(() => {
     
     bg_cover.style.backgroundImage = `url(${bg_image[index]})`;
     index = (index + 1) % bg_image.length;
-    console.log(index)
+    
 }, 3500);
