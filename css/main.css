@@ -10,7 +10,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  transition: background 0.5s linear;
+  transition: background 0.8s linear;
 }
 
 .float-right {

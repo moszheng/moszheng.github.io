@@ -1,4 +1,4 @@
-const bg_cover = document.getElementById("index_bg_overlay");
+const bg_cover = document.getElementById("index_bg_cover");
 
 const bg_image = [
     './img/01_gma29.jpg', 
@@ -8,9 +8,10 @@ const bg_image = [
 
 let index = 0;
 
-setInterval(() => {
 
-    bg_cover.style.backgroundImage = `url(${bg_image[index]})`;
-    index = (index + 1) % colors.length;
+setInterval(() => {
     
-}, 2000);
+    bg_cover.style.backgroundImage = `url(${bg_image[index]})`;
+    index = (index + 1) % bg_image.length;
+    console.log(index)
+}, 3500);
