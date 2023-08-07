@@ -10,7 +10,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  transition: background 0.8s linear;
+  transition: background 1.2s linear;
 }
 
 .float-right {
@@ -27,7 +27,10 @@ body {
   height: 260px; 
   height: auto;
 }
-
+.card-img-overlay{
+  background-color: rgba(0, 0, 0, 0.55);
+  -webkit-mask-image: linear-gradient(transparent, black);
+}
 /* Font Setting */
 h2 {
   text-align: center;

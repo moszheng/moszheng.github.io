@@ -3,6 +3,8 @@ const bg_cover = document.getElementById("index_bg_cover");
 const bg_image = [
     './img/01_gma29.jpg', 
     './img/03_SWSX_01.jpg',
+    './img/05_GMA32_01.png',
+    './img/04_KK_01.png',
     './img/02_gha56_01.png',
 ];
 
