@@ -1,3 +1,9 @@
+header  {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background-color: hsla(0, 0%, 95.3%, 0.75);
+}
+
 body {
   
   font-family: "PingFang TC","Noto Sans TC","Segoe UI",Helvetica,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important; 
