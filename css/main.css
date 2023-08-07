@@ -82,7 +82,14 @@ body {
   background-size: cover;
   transition: background 1.2s linear;
 }
-
+.index-btn{
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background-color: hsla(0, 0%, 95.3%, 0.25);
+  /* outline: solid; */
+  box-shadow: none;
+  border: 1px; 
+}
 .float-right {
   float: right!important;
 }
