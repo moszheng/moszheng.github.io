@@ -1,0 +1,1 @@
+import{q as t,b as o,c as n,d as e}from"./index-b52ab924.js";const s={},c={class:"text-center notfound"},_=e("div",{class:""},[e("h1",null,"404"),e("h3",null,"Page Not Found")],-1),a=[_];function d(r,l){return o(),n("main",c,a)}const i=t(s,[["render",d]]);export{i as default};
