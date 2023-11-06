@@ -1,2 +1,0 @@
-import{o as a,c as o,b as t,d as e,m as r}from"./index-794c7d1e.js";const s=e("div",{class:"showreel container"},[e("div",{class:"ratio ratio-16x9 mb-5","data-scroll-section":""},[e("iframe",{src:"https://player.vimeo.com/video/880783588?h=6ea64f06ea&color=ffffff&title=0&byline=0&portrait=0",allow:"autoplay"},`\r
-            `)])],-1),n={__name:"Showreel",setup(c){return(l,_)=>(a(),o("div",null,[s,t(r)]))}};export{n as default};
