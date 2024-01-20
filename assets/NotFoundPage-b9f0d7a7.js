@@ -1,0 +1,1 @@
+import{_ as t,o,c as n,d as e}from"./index-94eb96d3.js";const s={},c={class:"notfound d-flex-center vw-100 vh-100"},_=e("div",{class:"text-center"},[e("h1",null,"404"),e("h4",null,"Page Not Found")],-1),a=[_];function d(r,l){return o(),n("main",c,a)}const i=t(s,[["render",d]]);export{i as default};
