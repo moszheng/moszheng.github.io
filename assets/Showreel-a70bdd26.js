@@ -1,2 +1,0 @@
-import{o as t,b as o,d as a,e,n as s}from"./index-1dc24a6d.js";const l={class:""},c=e("main",{class:"showreel d-flex-center"},[e("div",{class:"w-full mt-5 pt-5 mb-5","data-scroll-section":""},[e("iframe",{class:"aspect-video w-full",src:"https://player.vimeo.com/video/880783588?h=6ea64f06ea&color=ffffff&title=0&byline=0&portrait=0",allow:"autoplay"},`\r
-            `)])],-1),f={__name:"Showreel",setup(r){return(_,n)=>(t(),o("div",l,[c,a(s)]))}};export{f as default};
