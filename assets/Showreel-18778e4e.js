@@ -1,0 +1,2 @@
+import{o as a,b as s,d as t,e,n as o}from"./index-b4d08f5c.js";const l={class:""},c=e("main",{class:"showreel d-flex-center"},[e("div",{class:"mb-5 mt-5 w-full pt-5"},[e("iframe",{class:"aspect-video w-full bg-blue-200",src:"https://player.vimeo.com/video/880783588?h=6ea64f06ea&color=ffffff&title=0&byline=0&portrait=0",allow:"autoplay"},`\r
+            `)])],-1),f={__name:"Showreel",setup(r){return(_,n)=>(a(),s("div",l,[c,t(o)]))}};export{f as default};
