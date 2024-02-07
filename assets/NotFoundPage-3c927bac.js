@@ -1,0 +1,1 @@
+import{_ as t,b as s,c as o,e}from"./index-8299930b.js";const n={},c={class:"notfound d-flex-center vw-100 vh-100"},_=e("div",{class:"text-center"},[e("h1",{class:"text-stone-950"},"404"),e("h4",{class:"text-stone-950"},"Page Not Found")],-1),a=[_];function d(r,l){return s(),o("main",c,a)}const u=t(n,[["render",d]]);export{u as default};
